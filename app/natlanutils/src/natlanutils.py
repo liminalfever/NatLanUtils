@@ -110,6 +110,6 @@ class TextDistribution:
         word_freq_df.sort_values(by='count', ascending=False, inplace=True)
         word_freq_df['frequency'] = word_freq_df['count'] / total_words
         word_freq_df['cumulative_frequency'] = word_freq_df['frequency'].cumsum()
-        word_freq_df['rank'] = word_freq_df['frequency'].rank(ascending=False)
+        word_freq_df['position'] = word_freq_df.index + 1
             
         return word_freq_df

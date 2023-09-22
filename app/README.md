@@ -26,11 +26,7 @@ The `TextDistribution` class allows you to create frequency tables for text data
 
 ## Installation
 
-You can easily install the **NatLanUtils** module using `pip`:
-
-```bash
-pip install natlanutils
-```
+This package has not been published on PyPI yet. To install it, you can clone this repository and install the package locally.
 
 ## Usage
 
