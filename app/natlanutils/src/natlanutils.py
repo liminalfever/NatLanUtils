@@ -71,7 +71,7 @@ class TweetPreprocessing:
             return list(seen_twice)   
         duplicates = list_duplicates(text_list)
         if get_info:
-            print(f"Removed {len_tot-len_unique} duplicates out of {len_tot} tweets ({round((len_tot-len_unique)*100/len_tot, 2)}).")
+            print(f"Removed {len_tot-len_unique} duplicates out of {len_tot} tweets ({round((len_tot-len_unique)*100/len_tot, 2)}%).")
             print(f"{len_unique} unique tweets, {len(duplicates)} unique duplicates.")
         
         most_common = Counter(text_list).most_common(get_most_common)
