@@ -7,4 +7,10 @@ setup(
     author='Francesco Ortame',
     author_email='francesco.ortame@gmail.com',
     packages=find_packages(),
+    # add requirements
+    install_requires=[
+        'tqdm',
+        'collections',
+        'pandas',
+        're']
 )
