@@ -53,9 +53,6 @@ unique_tweets, duplicate_tweets, most_common_tweets = tweet_preprocessor.handle_
 word_frequency_df = text_distribution.frequency_table(cleaned_tweets)
 ```
 
-For more detailed information and usage examples, please refer to the [official documentation](link_to_documentation).
-
-
 ## License
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
