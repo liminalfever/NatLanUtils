@@ -80,36 +80,41 @@ class TweetPreprocessing:
     
 
 class TextDistribution:
-    """TextDistribution class for creating frequency tables."""
+
     def __init__(self):
-        """Constructor for TextDistribution class"""
-    
+        """
+        Initialize the TextDistribution class.
+        """
+
     def frequency_table(self, text_list: list[str]) -> pd.DataFrame:
         """
-        Create a frequency table for the given list of texts.
+        Generates a frequency table of word occurrences in the given list of texts.
 
         Args:
-            text_list (list[str]): List of texts to create frequency table for.
+            text_list (list[str]): A list of texts.
 
         Returns:
-            pd.DataFrame: Frequency table.
+            pd.DataFrame: A DataFrame containing columns for word, absolute frequency,
+                        relative frequency, cumulative frequency, and position.
+
         """
 
-        word_freq = Counter(text_list)
+        word_frequency = Counter()
 
-        with tqdm(total=len(text_list)) as pbar:
+        with tqdm(total=len(text_list), desc='Processing texts') as pbar:
             for text in text_list:
                 words = text.split()
-                word_freq.update(words)
+                word_frequency.update(words)
                 pbar.update(1)
-        
-        total_words = sum(word_freq.values())
 
-        word_freq_tuple = list(word_freq.items())
-        word_freq_df = pd.DataFrame(word_freq_tuple, columns=['word', 'count'])
-        word_freq_df.sort_values(by='count', ascending=False, inplace=True)
-        word_freq_df['frequency'] = word_freq_df['count'] / total_words
-        word_freq_df['cumulative_frequency'] = word_freq_df['frequency'].cumsum()
-        word_freq_df['position'] = word_freq_df.index + 1
-            
-        return word_freq_df
+        total_words = sum(word_frequency.values())
+
+        word_frequency_tuple = list(word_frequency.items())
+        word_frequency_df = pd.DataFrame(word_frequency_tuple, columns=['word', 'abs_freq'])
+        word_frequency_df.sort_values('abs_freq', inplace=True, ascending=False)
+
+        word_frequency_df['rel_freq'] = word_frequency_df['abs_freq'] / total_words
+        word_frequency_df['cum_freq'] = word_frequency_df['rel_freq'].cumsum()
+        word_frequency_df['position'] = range(1, len(word_frequency_df) + 1)
+
+        return word_frequency_df
